@@ -1,0 +1,13 @@
+<h1>Favourited Posts</h1>
+<div>
+  <% @favourites.each do |f| %>
+    <div class="well">
+        <% p = f.post %>
+        <%= p.title %>
+        <%= link_to "Show", post_path(p), class: "btn btn-primary btn-sm pull-right" %>
+        <% if can? :manage, p %>
+          <div class="pull-right owned">Owned</div>
+        <% end %>
+    </div>
+  <% end %>
+</div>

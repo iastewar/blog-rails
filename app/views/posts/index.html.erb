@@ -1,0 +1,13 @@
+<h1>All Posts</h1>
+<%= link_to("New Post", new_post_path, class: "btn btn-primary") %>
+<div>
+  <% @posts.each do |p| %>
+    <div class="well">
+        <%= p.title %>
+        <%= link_to "Show", post_path(p), class: "btn btn-primary btn-sm pull-right" %>
+        <% if can? :manage, p %>
+          <div class="pull-right owned">Owned</div>
+        <% end %>
+    </div>
+  <% end %>
+</div>

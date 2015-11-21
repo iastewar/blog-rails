@@ -1,0 +1,13 @@
+Hello <%= @owner.full_name %>,
+Here are todays comments for your posts.
+<% @owner.posts.each do |p| %>
+  <% post_comments = @all_comments_today.where(post: p) %>
+  <% if post_comments.present? %>
+    Post title: <%= p.title %>
+    <% post_comments.each do |comment| %>
+        <%= comment.user.full_name %>: <%= comment.body %>
+    <% end %>
+  <% end %>
+<% end %>
+Regards,
+Blog Team
