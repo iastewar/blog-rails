@@ -9,7 +9,26 @@
   <% end %>
 <% end %>
 
+<h2>Assets</h2>
+<% @assets.each do |asset| %>
+  <div class="well">
+    <%#= image_tag asset.file.url %>
+    <%= asset.file %>
+    <% if can? :destroy, asset %>
+      <%= link_to "Delete", post_asset_path(@p, asset), method: :delete, class: "btn btn-danger pull-right", data: {confirm: "Are you sure?"}%>
+    <% end %>
+  </div>
+<% end %>
+
+
 <% if can? :edit, @p %>
+  <h4>Add an Asset</h4>
+  <%= simple_form_for [@p, @asset] do |f| %>
+    <%= f.input :file %>
+    <%= f.submit class: "btn btn-primary" %>
+  <% end %>
+
+
   <%= link_to "Edit", edit_post_path(@p), class: "btn btn-info btn-sm" %>
 <% end %>
 <% if can? :destroy, @p %>
@@ -25,25 +44,12 @@
 <% end %>
 Favourited: <%= pluralize(@p.favourites.count, "time") %>
 
-<h2>Add a Comment</h2>
-<%= @comment.errors.full_messages.join(", ") %>
-<%= form_for [@p, @comment] do |f| %>
-  <div class="form-group">
-    <%= f.label :body %>
-    <%= f.text_area :body, value: @comment.body, class: "form-control" %>
-  </div>
-  <%= f.submit class: "btn btn-primary" %>
-<% end %>
+<h2 id="add_comment_heading">Add a Comment</h2>
+<%= render "/comments/form" %>
 
 <h2>Comments</h2>
-<% @comments.each do |comment| %>
-  <div class="well">
-    <%= comment.body %>
-    <% if can? :destroy, comment %>
-      <%= link_to "Delete", post_comment_path(@p, comment), method: :delete, class: "btn btn-danger pull-right", data: {confirm: "Are you sure?"}%>
-    <% end %>
-    <div class="pull-right owned">
-      <%= comment.user.first_name %> <%= comment.user.last_name %>
-    </div>
-  </div>
-<% end %>
+<div id="comments">
+  <% @comments.each do |comment| %>
+    <%= render "/comments/comment", comment: comment %>
+  <% end %>
+</div>

@@ -1,0 +1,6 @@
+<% dom_comment_id = dom_id(@comment) %>
+$("#<%= dom_comment_id %>").replaceWith("<%= j(render('/comments/comment', {comment: @comment})) %>");
+
+<% @comment = Comment.new %>
+$("#edit_<%= dom_comment_id %>").replaceWith("<%= j render 'form' %>");
+$("#add_comment_heading").html("Add a Comment");
