@@ -26,7 +26,7 @@ class CommentsController < ApplicationController
     @p = Post.find_by_id params[:post_id]
     @comment = Comment.find_by_id params[:id]
     respond_to do |format|
-      format.html { redirect_to post_path(@p), alert: "Access denied." and return unless can? :edit, @comment }
+      redirect_to post_path(@p), alert: "Access denied." and return unless can? :edit, @comment
       format.js { render }
     end
   end
@@ -52,7 +52,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find_by_id params[:id]
     respond_to do |format|
       if @comment
-        format.html { redirect_to post_path(params[:post_id]), alert: "Access denied." and return unless can? :destroy, @comment }
+        redirect_to post_path(params[:post_id]), alert: "Access denied." and return unless can? :destroy, @comment
         @comment.destroy
         format.html { redirect_to post_path(comment.post), notice: "Comment deleted" }
         format.js { render }
