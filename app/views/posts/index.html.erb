@@ -2,9 +2,9 @@
 <%= link_to("New Post", new_post_path, class: "btn btn-primary") %>
 <div>
   <% @posts.each do |p| %>
-    <div class="well">
+    <div class="well clickable_html">
         <%= p.title %>
-        <%= link_to "Show", post_path(p), class: "btn btn-primary btn-sm pull-right" %>
+        <%= link_to "Show", post_path(p), class: "btn btn-primary btn-sm pull-right", style: "display: none" %>
         <% if can? :manage, p %>
           <div class="pull-right owned">Owned</div>
         <% end %>
