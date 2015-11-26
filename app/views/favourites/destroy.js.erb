@@ -1,0 +1,4 @@
+$("#favourite_count").html("Favourited: <%= pluralize(@p.favourites.count, 'time') %>");
+
+$("#favourite").replaceWith("<%= j link_to fa_icon("star-o"), post_favourites_path(@p), method: :post,
+              class: "icon-big", id: "favourite", remote: true %>")

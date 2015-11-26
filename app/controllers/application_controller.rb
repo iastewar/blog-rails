@@ -5,7 +5,10 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user
     unless user_signed_in?
-      redirect_to new_session_path, alert: "Please sign in!"
+      respond_to do |format|
+        format.html { redirect_to new_session_path, alert: "Please sign in!" }
+        format.js { render :authenticate_user }
+      end
     end
   end
 
@@ -18,5 +21,5 @@ class ApplicationController < ActionController::Base
     current_user.present?
   end
   helper_method :user_signed_in?
-  
+
 end

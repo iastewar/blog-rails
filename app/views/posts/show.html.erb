@@ -1,4 +1,4 @@
-<h1><%= @p.title %></h1>
+<h1 class="page-header"><%= @p.title %></h1>
 <p><%= @p.body %></p>
 <p>Created by: <%= @p.user.first_name %> <%= @p.user.last_name %></p>
 
@@ -37,12 +37,12 @@
 
 <% if user_signed_in? && @p.favourited_by?(current_user) %>
   <%= link_to fa_icon("star"), [@p, @p.favourite_for(current_user)],
-                method: :delete, class: "icon-big" %>
+                method: :delete, class: "icon-big", id: "favourite", remote: true %>
 <% else %>
   <%= link_to fa_icon("star-o"), post_favourites_path(@p), method: :post,
-                class: "icon-big" %>
+                class: "icon-big", id: "favourite", remote: true %>
 <% end %>
-Favourited: <%= pluralize(@p.favourites.count, "time") %>
+<p id="favourite_count">Favourited: <%= pluralize(@p.favourites.count, "time") %></p>
 
 <h2 id="add_comment_heading">Add a Comment</h2>
 <%= render "/comments/form" %>
