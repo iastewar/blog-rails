@@ -54,7 +54,7 @@ class CommentsController < ApplicationController
       if @comment
         redirect_to post_path(params[:post_id]), alert: "Access denied." and return unless can? :destroy, @comment
         @comment.destroy
-        format.html { redirect_to post_path(comment.post), notice: "Comment deleted" }
+        format.html { redirect_to post_path(@comment.post), notice: "Comment deleted" }
         format.js { render }
       else
         format.html { redirect_to post_path(params[:post_id]), notice: "Comment already deleted" }
