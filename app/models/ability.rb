@@ -16,6 +16,10 @@ class Ability
       user == c.post.user
     end
 
+    can :manage, Asset do |a|
+      user == a.post.user
+    end
+
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

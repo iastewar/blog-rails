@@ -1,16 +1,6 @@
-<%= @p.errors.full_messages.join(", ") %>
-<%= form_for @p do |f| %>
-  <div class="form-group">
-    <%= f.label :title %>
-    <%= f.text_field :title, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :body %>
-    <%= f.text_area :body, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.collection_check_boxes :tag_ids, Tag.order(:name), :id, :name  %>
-  </div>
-
-  <%= f.submit class: "btn btn-primary"%>
+<%= simple_form_for @p do |f| %>
+  <%= f.input :title %>
+  <%= f.input :body %>
+  <%= f.association :tags, as: :check_boxes %>
+  <%= f.submit({class: "btn btn-primary"}) %>
 <% end %>

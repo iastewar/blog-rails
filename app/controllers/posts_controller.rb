@@ -19,6 +19,10 @@ class PostsController < ApplicationController
   def show
     @comments = @p.comments.order(created_at: :desc)
     @comment = Comment.new
+
+    @assets = @p.assets.order(created_at: :desc)
+    @asset = Asset.new
+
   end
 
   def edit

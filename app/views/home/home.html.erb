@@ -1,1 +1,7 @@
-<h1>Home</h1>
+<h1 class="page-header">Blog Tool</h1>
+
+
+<div id="home_btns" class="list-group col-md-6" role="group" aria-label="...">
+  <%= link_to("Posts", posts_path, class: "list-group-item") %>
+  <%= link_to("New Post", new_post_path, class: "list-group-item") %>
+</div>

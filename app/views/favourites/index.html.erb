@@ -1,10 +1,10 @@
-<h1>Favourited Posts</h1>
+<h1 class="page-header">Favourited Posts</h1>
 <div>
   <% @favourites.each do |f| %>
-    <div class="well">
+    <div class="well clickable_html">
         <% p = f.post %>
         <%= p.title %>
-        <%= link_to "Show", post_path(p), class: "btn btn-primary btn-sm pull-right" %>
+        <%= link_to "Show", post_path(p), class: "btn btn-primary btn-sm pull-right", style: "display: none" %>
         <% if can? :manage, p %>
           <div class="pull-right owned">Owned</div>
         <% end %>
